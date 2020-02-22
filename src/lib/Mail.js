@@ -2,11 +2,11 @@ import nodemailer from 'nodemailer';
 import { resolve } from 'path';
 import exphbs from 'express-handlebars';
 import nodemailerhbs from 'nodemailer-express-handlebars';
-import maiConfig from '../config/mail';
+import mailConfig from '../config/mail';
 
 class Mail {
   constructor() {
-    const { host, port, secure, auth } = maiConfig;
+    const { host, port, secure, auth } = mailConfig;
     this.transporter = nodemailer.createTransport({
       host,
       port,
@@ -35,7 +35,7 @@ class Mail {
   }
 
   sendMail(message) {
-    return this.transporter.sendMail({ ...maiConfig.default, ...message });
+    return this.transporter.sendMail({ ...mailConfig.default, ...message });
   }
 }
 
